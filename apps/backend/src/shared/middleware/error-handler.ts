@@ -20,7 +20,7 @@ export const errorHandler = (error: Error, _req: Request, res: Response, _next: 
       success: false,
       error: {
         code: 'VALIDATION_ERROR',
-        message: error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', '),
+        message: (error as any).errors.map((e: any) => `${e.path.join('.')}: ${e.message}`).join(', '),
       },
     });
     return;
