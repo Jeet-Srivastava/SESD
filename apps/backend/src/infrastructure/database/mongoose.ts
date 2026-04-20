@@ -4,9 +4,13 @@ import { logger } from '../../config/logger.js';
 
 export const connectMongo = async (): Promise<void> => {
   try {
-    await mongoose.connect(env.MONGODB_URI, {
+
+    const options: mongoose.ConnectOptions = {
       serverSelectionTimeoutMS: 10000,
-    });
+    };
+
+    await mongoose.connect(env.MONGODB_URI, options);
+    
     logger.info('MongoDB connected');
   } catch (error) {
     logger.error('MongoDB connection failed', {

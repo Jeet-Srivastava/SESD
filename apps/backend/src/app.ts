@@ -13,17 +13,7 @@ import { errorHandler } from './shared/middleware/error-handler.js';
 
 export const createApp = () => {
   const app = express();
-  app.use(
-    cors({
-      origin: [
-        env.FRONTEND_URL,
-        'http://localhost:5173',
-        'http://localhost:5174',
-        'http://127.0.0.1:5173',
-        'http://127.0.0.1:5174'
-      ],
-    }),
-  );
+  app.use(cors());
   app.use(express.json({ limit: '10mb' }));
   app.use(requestLogger);
 
